@@ -1,13 +1,7 @@
 ![Antox](http://vexx.us/Images/AntoxFull.png "Antox Tox Android Client")
 =====
 
-Antox is an Android 2.2+ client for Tox. It aims to bring the full multimedia support Tox offers to your device, although it's still currently in heavy development. 
-Once ready, Antox will be available on Google Play and on F-Droid.
-
-[![tip for next commit](http://tip4commit.com/projects/654.svg)](http://tip4commit.com/projects/654)
-
-###Current development
-Currently implementing A/V in Antox
+###This project is no longer being maintained for various reasons. There is a working and maintained fork of Antox [here](https://github.com/subliun/Antox)
 
 ###Antox On F-Droid
 To get Antox on F-Droid, add https://markwinter.me/fdroid/repo to your repo list. To do this, go to 'Repositories' in F-Droid and click the '+' symbol in the action bar. PLEASE NOTE this app is still alpha and
