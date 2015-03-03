@@ -1,2 +1,1 @@
-include ':app', ':PagerSlidingTabStrip'
-project(':PagerSlidingTabStrip').projectDir = new File('app/libs/PagerSlidingTabStrip')
+include ':app'

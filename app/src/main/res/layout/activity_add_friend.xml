@@ -10,14 +10,12 @@
         android:paddingBottom="@dimen/margin_large"
         android:paddingLeft="@dimen/margin_large"
         android:paddingRight="@dimen/margin_large"
-        android:focusableInTouchMode="true"
         android:paddingTop="@dimen/margin_large"
         tools:context=".AddFriendActivity">
 
         <EditText
             android:id="@+id/addfriend_key"
             android:layout_width="match_parent"
-            android:inputType="text"
             android:layout_height="match_parent"
             android:singleLine="true"
             android:layout_marginTop="20dp"
@@ -28,7 +26,6 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:id="@+id/textView"
-            android:inputType="text"
             android:layout_marginTop="20dp"
             android:textSize="25sp"
             android:text="@string/addfriend_optional_title"
@@ -46,10 +43,16 @@
             android:id="@+id/addfriend_message"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:inputType="text"
             android:layout_marginTop="10dp"
             android:gravity="center"
             android:hint="@string/addfriend_friend_message" />
+
+        <Spinner
+            android:id="@+id/spinner_add_friend_group"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:drawSelectorOnTop="true" />
 
         <Button
             android:id="@+id/addFriend"
