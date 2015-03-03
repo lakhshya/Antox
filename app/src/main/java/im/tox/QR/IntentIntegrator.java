@@ -16,6 +16,17 @@ package im.tox.QR;
  */
 
 
+import android.app.Activity;
+import android.app.AlertDialog;
+import android.content.ActivityNotFoundException;
+import android.content.Context;
+import android.content.DialogInterface;
+import android.content.Intent;
+import android.content.pm.PackageManager;
+import android.content.pm.ResolveInfo;
+import android.net.Uri;
+import android.os.Bundle;
+import android.util.Log;
 
 import java.util.Arrays;
 import java.util.Collection;
@@ -24,16 +35,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import android.app.Activity;
-import android.app.AlertDialog;
-import android.content.ActivityNotFoundException;
-import android.content.DialogInterface;
-import android.content.Intent;
-import android.content.pm.PackageManager;
-import android.content.pm.ResolveInfo;
-import android.net.Uri;
-import android.os.Bundle;
-import android.util.Log;
+import im.tox.antox.R;
 
 /**
  * <p>A utility class which helps ease integration with Barcode Scanner via {@link Intent}s. This is a simple
@@ -111,13 +113,6 @@ public class IntentIntegrator {
 
     public static final int REQUEST_CODE = 0x0000c0de; // Only use bottom 16 bits
     private static final String TAG = IntentIntegrator.class.getSimpleName();
-
-    public static final String DEFAULT_TITLE = "Install Barcode Scanner?";
-    public static final String DEFAULT_MESSAGE =
-            "This application requires Barcode Scanner. Would you like to install it?";
-    public static final String DEFAULT_YES = "Yes";
-    public static final String DEFAULT_NO = "No";
-
     private static final String BS_PACKAGE = "com.google.zxing.client.android";
     private static final String BSPLUS_PACKAGE = "com.srowen.bs.android";
 
@@ -149,10 +144,11 @@ public class IntentIntegrator {
 
     public IntentIntegrator(Activity activity) {
         this.activity = activity;
-        title = DEFAULT_TITLE;
-        message = DEFAULT_MESSAGE;
-        buttonYes = DEFAULT_YES;
-        buttonNo = DEFAULT_NO;
+        Context appContext = activity.getApplicationContext();
+        title = appContext.getString(R.string.qr_default_title);
+        message = appContext.getString(R.string.qr_default_message);
+        buttonYes = appContext.getString(R.string.qr_button_yes);
+        buttonNo = appContext.getString(R.string.qr_button_no);
         targetApplications = TARGET_ALL_KNOWN;
         moreExtras = new HashMap<String,Object>(3);
     }

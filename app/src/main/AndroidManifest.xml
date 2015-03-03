@@ -1,14 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="im.tox.antox"
-    android:versionCode="18"
-    android:versionName="0.9.0">
+    android:versionCode="45"
+    android:versionName="0.14.2" >
 
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.VIBRATE" />
+    <uses-permission android:name="android.permission.CAMERA" />
+    <uses-permission android:name="android.permission.RECORD_AUDIO" />
 
     <uses-sdk
         android:minSdkVersion="8"
@@ -23,75 +25,43 @@
 
     <application
         android:allowBackup="true"
+        android:hardwareAccelerated="false"
         android:icon="@drawable/ic_launcher"
-        android:logo="@drawable/ic_actionbar"
         android:label="@string/app_name"
-        android:theme="@style/CustomActionBarTheme"
-        android:hardwareAccelerated="false">
-
-        <service
-            android:name=".tox.ToxService"
-            android:exported="false" />
-
+        android:logo="@drawable/ic_actionbar"
+        android:theme="@style/CustomActionBarTheme" >
         <service
             android:name=".tox.ToxDoService"
-            android:exported="false" />
-
+            android:exported="false"
+            android:label="Antox" />
         <activity
-            android:name="im.tox.antox.activities.MainActivity"
-            android:configChanges="locale|orientation|screenSize"
-            android:windowSoftInputMode="stateAlwaysHidden"
-            android:label="@string/app_name">
+            android:name=".activities.MainActivity"
+            android:configChanges="orientation|screenSize"
+            android:windowSoftInputMode="stateAlwaysHidden" >
+        </activity>
+        <activity
+            android:name=".activities.LoginActivity"
+            android:theme="@style/Theme.AppCompat.Translucent"
+            android:label="@string/app_name" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
         <activity
-            android:name="im.tox.antox.activities.SettingsActivity"
-            android:label="@string/title_activity_settings"
-
-            android:parentActivityName="im.tox.antox.activities.MainActivity">
+            android:name=".activities.ChatActivity" >
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="im.tox.antox.activities.MainActivity" />
         </activity>
         <activity
-            android:name="im.tox.antox.activities.ProfileActivity"
-            android:label="@string/title_activity_profile"
-
-            android:parentActivityName="im.tox.antox.activities.MainActivity">
-            <meta-data
-                android:name="android.support.PARENT_ACTIVITY"
-                android:value="im.tox.antox.activities.MainActivity" />
-        </activity>
-        <activity
-            android:name="im.tox.antox.activities.AboutActivity"
-            android:label="@string/title_activity_about"
-
-            android:parentActivityName="im.tox.antox.activities.MainActivity">
-            <meta-data
-                android:name="android.support.PARENT_ACTIVITY"
-                android:value="im.tox.antox.activities.MainActivity" />
-        </activity>
-        <activity
-            android:name="im.tox.antox.activities.WelcomeActivity"
-
-            android:label="@string/title_activity_welcome">
-            <!--android:parentActivityName="im.tox.antox.MainActivity">
-            <meta-data
-                android:name="android.support.PARENT_ACTIVITY"
-                android:value="im.tox.antox.MainActivity"/>-->
-        </activity>
-        <activity
-            android:name="im.tox.antox.activities.AddFriendActivity"
-            android:label="@string/title_activity_add_friend"
-            android:parentActivityName="im.tox.antox.activities.MainActivity">
+            android:name=".activities.AddFriendActivity"
+            android:label="@string/title_activity_add_friend">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="im.tox.antox.activities.MainActivity" />
 
-            <!--  Intent filter for handling tox:// links -->
+            <!-- Intent filter for handling tox: links -->
             <intent-filter>
                 <action android:name="android.intent.action.VIEW" />
 
@@ -102,31 +72,40 @@
             </intent-filter>
         </activity>
         <activity
-            android:name="im.tox.antox.activities.FriendProfileActivity"
+            android:name=".activities.FriendProfileActivity"
             android:label="@string/title_activity_friend_profile"
-            android:windowSoftInputMode="stateAlwaysHidden"
-            android:parentActivityName="im.tox.antox.activities.MainActivity">
-            <meta-data
-                android:name="android.support.PARENT_ACTIVITY"
-                android:value="im.tox.antox.activities.MainActivity" />
-        </activity>
-        <activity
-            android:name="im.tox.antox.activities.ManageGroupsActivity"
-            android:label="@string/title_activity_manage_groups"
-            android:parentActivityName="im.tox.antox.activities.MainActivity">
+            android:windowSoftInputMode="stateAlwaysHidden" >
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="im.tox.antox.activities.MainActivity" />
         </activity>
 
-        <receiver android:name="im.tox.antox.utils.ConnectionChangeReceiver"
-            android:label="NetworkConnection">
+        <receiver
+            android:name=".utils.ConnectionChangeReceiver"
+            android:label="NetworkConnection" >
             <intent-filter>
-                <action android:name="android.net.conn.CONNECTIVITY_CHANGE"/>
+                <action android:name="android.net.conn.CONNECTIVITY_CHANGE" />
             </intent-filter>
         </receiver>
 
+        <activity
+            android:name=".activities.CreateAccountActivity"
+            android:label="@string/title_activity_create_account" />
+        <activity
+            android:name=".activities.Settings"
+            android:label="@string/action_settings"/>
 
+        <activity
+            android:name=".activities.ProfileSettingsActivity"
+            android:label="@string/title_activity_profile_settings"/>
+
+        <activity
+            android:name=".activities.About"
+            android:label="@string/about" />
+
+        <activity
+            android:name=".activities.License"
+            android:label="@string/open_source_license" />   
     </application>
 
 </manifest>

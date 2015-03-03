@@ -1,23 +1,37 @@
-apply plugin: 'android'
+buildscript {
+    repositories {
+        mavenCentral()
+    }
+    dependencies {
+        classpath "com.android.tools.build:gradle:0.14.2"
+        classpath "jp.leafytree.gradle:gradle-android-scala-plugin:1.1"
+    }
+}
+
+repositories {
+    mavenCentral()
+}
+
+apply plugin: "com.android.application"
+apply plugin: "android-scala"
 
 android {
-    compileSdkVersion 19
-    buildToolsVersion '19.0.3'
+    compileSdkVersion 21
+    buildToolsVersion '21.1.1'
 
     defaultConfig {
         minSdkVersion 8
-        targetSdkVersion 19
-    }
-
-    compileOptions {
-        sourceCompatibility JavaVersion.VERSION_1_7
-        targetCompatibility JavaVersion.VERSION_1_7
+        targetSdkVersion 21
     }
 
     buildTypes {
         release {
-            runProguard false
-            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.txt'
+            minifyEnabled true
+            proguardFiles 'proguard-rules.txt'
+        }
+        debug {
+            minifyEnabled true
+            proguardFiles 'proguard-rules.txt'
         }
     }
 
@@ -26,14 +40,23 @@ android {
         absolutePaths false
         lintConfig file("lint.xml")
     }
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_7
+        targetCompatibility JavaVersion.VERSION_1_7
+    }
 }
 
 dependencies {
-    compile 'com.android.support:support-v4:+'
-    compile 'com.android.support:appcompat-v7:+'
-    compile files('libs/wearable-preview-support.jar')
     compile files('libs/jToxcore.jar')
     compile files('libs/core.jar')
-    compile files('libs/jsoup-1.7.3.jar')
     compile files('libs/dnsjava-2.1.6.jar')
+    compile files('libs/kalium-jni-1.0.0-SNAPSHOT.jar')
+    compile 'org.scala-lang:scala-library:2.11.4'
+    compile 'com.android.support:support-v4:21.0.+'
+    compile 'org.scaloid:scaloid_2.11:3.5-10'
+    compile 'com.android.support:appcompat-v7:21.0.+'
+    compile 'com.netflix.rxjava:rxjava-core:0.20.6'
+    compile 'com.netflix.rxjava:rxjava-android:0.20.6'
+    compile 'com.netflix.rxjava:rxjava-scala:0.20.6'
+    compile 'com.shamanland:fab:0.0.5'
 }
